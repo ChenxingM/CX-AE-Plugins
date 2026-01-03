@@ -5,8 +5,9 @@ project(CX-AE-Plugins VERSION 1.0.0 LANGUAGES CXX)
 # Project Configuration
 # ============================================================================
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)  # Use standard C++20, not GNU extensions
 
 # Output directory for compiled plugins
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)

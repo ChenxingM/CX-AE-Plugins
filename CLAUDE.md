@@ -38,11 +38,15 @@ See [docs/CMAKE.md](docs/CMAKE.md) for detailed CMake usage.
 - **Output location**: Compiled `.aex` files appear in `output/`
 
 ### Build Requirements
-- Visual Studio 2022 (v143 toolset)
+- Visual Studio 2022 (v143 toolset) with C++20 support
 - CMake 3.20+ (for CMake builds)
 - After Effects SDK 25.6 (default path: `C:\Users\tammc\Documents\0_Develop\ae25.6_61.64bit.AfterEffectsSDK\Examples`)
 - Windows 10 SDK
 - Ninja (optional, for CLion/VS Code)
+
+### Language Standard
+- **C++20** (ISO/IEC 14882:2020)
+- See [docs/CPP20.md](docs/CPP20.md) for recommended C++20 features to use
 
 ### Plugin Installation
 Copy `output/*.aex` to After Effects plugins directory:

@@ -31,9 +31,10 @@ CX-AE-Plugins/
 
 ## 构建要求
 
-- **Visual Studio 2022** (v143 工具集)
+- **Visual Studio 2022** (v143 工具集，支持 C++20)
 - **After Effects SDK** (25.6 或更高版本)
 - **Windows 10 SDK**
+- **CMake 3.20+** (可选，用于跨 IDE 构建)
 
 ## 快速开始
 
