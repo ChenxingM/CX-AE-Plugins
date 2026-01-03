@@ -1,0 +1,39 @@
+# Build outputs
+output/*.aex
+output/*.pdb
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+ipch/
+
+# Build intermediates (per-plugin)
+win/*/x64/
+win/*/*.rc
+*.obj
+*.pch
+*.idb
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.rr
+*.rrc
+*.bsc
+*.sbr
+
+# macOS
+.DS_Store
+
+# Temp files
+*.tmp
+*.log
+
+# Claude Code
+.claude/
