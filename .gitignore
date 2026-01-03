@@ -35,5 +35,19 @@ win/*/*.rc
 *.tmp
 *.log
 
+# CMake
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+
+# CLion
+.idea/
+
+# VS Code
+.vscode/
+
 # Claude Code
 .claude/
