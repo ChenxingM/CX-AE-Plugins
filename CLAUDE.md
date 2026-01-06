@@ -8,41 +8,15 @@ CX-AE-Plugins is a collection of After Effects plugins designed for animation ph
 
 ## Build Commands
 
-### CMake (Cross-IDE) - Recommended
-
-**Quick build with presets:**
-```bash
-cmake --preset windows-release
-cmake --build build/windows-release
-```
-
-**Custom SDK path:**
-```bash
-cmake --preset windows-release -DAE_SDK_PATH="D:/path/to/ae_sdk/Examples"
-```
-
-**Available presets:**
-- `windows-debug` / `windows-release` - Ninja generator for CLion/VS Code
-- `vs2022-debug` / `vs2022-release` - Visual Studio generator
-
-**IDE-specific:**
-- **CLion**: File → Open project root → Auto-detects CMakeLists.txt → Select preset → Build
-- **VS Code**: Open folder → Select preset (Ctrl+Shift+P: CMake: Select Configure Preset) → Build
-- **Visual Studio 2022**: File → Open → CMake → Select CMakeLists.txt
-
-See [docs/CMAKE.md](docs/CMAKE.md) for detailed CMake usage.
-
-### Visual Studio (Traditional)
+### Visual Studio
 - **Open solution**: `win/CX-AE-Plugins.sln`
 - **Build all**: Select Release|x64 configuration, Build > Build Solution (F7)
 - **Output location**: Compiled `.aex` files appear in `output/`
 
 ### Build Requirements
 - Visual Studio 2022 (v143 toolset) with C++20 support
-- CMake 3.20+ (for CMake builds)
 - After Effects SDK 25.6 (default path: `C:\Users\tammc\Documents\0_Develop\ae25.6_61.64bit.AfterEffectsSDK\Examples`)
 - Windows 10 SDK
-- Ninja (optional, for CLion/VS Code)
 
 ### Language Standard
 - **C++20** (ISO/IEC 14882:2020)
@@ -102,34 +76,17 @@ Each plugin requires a `.r` PiPL resource file compiled via custom build step:
 
 ## Adding a New Plugin
 
-### Using CMake (Recommended)
-
 1. **Create plugin directory**: `plugins/cx_NewPlugin/`
 2. **Create source files**:
    - `NewPlugin.h` - Parameter enums, data structures, function declarations
    - `NewPlugin.cpp` - EffectMain implementation, rendering logic
    - `NewPluginPiPL.r` - PiPL resource definition
-3. **Register in CMake**: Add to `CMakeLists.txt`:
-   ```cmake
-   add_ae_plugin(cx_NewPlugin ${CMAKE_SOURCE_DIR}/plugins/cx_NewPlugin)
-   ```
-4. **Include shared header**: `#include "CXCommon.h"` for common utilities
-5. **Build**: `cmake --build build/windows-release`
-
-The `add_ae_plugin()` function automatically handles:
-- Source file compilation
-- PiPL resource processing
-- Include paths setup
-- .aex output generation
-
-### Using Visual Studio Projects
-
-1. Follow steps 1-2 above
-2. **Create VS project**: `win/cx_NewPlugin/cx_NewPlugin.vcxproj`
+3. **Include shared header**: `#include "CXCommon.h"` for common utilities
+4. **Create VS project**: `win/cx_NewPlugin/cx_NewPlugin.vcxproj`
    - Copy existing vcxproj, update paths and GUIDs
    - Configure include paths: `$(CX_PLUGINS_ROOT)\shared`, plugin directory, SDK paths
    - Add custom build step for PiPL compilation
-3. **Add to solution**: Open `CX-AE-Plugins.sln`, Add Existing Project
+5. **Add to solution**: Open `CX-AE-Plugins.sln`, Add Existing Project
 
 ## cx_ColorLines Implementation Details
 
