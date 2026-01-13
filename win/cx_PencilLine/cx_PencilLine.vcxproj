@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B2C3D4E5-F6A7-8901-BCDE-F23456789012}</ProjectGuid>
+    <RootNamespace>cx_PencilLine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <!-- SDK path should be defined in:
+       1. Environment variable AE_SDK_PATH, or
+       2. cx_PencilLine.vcxproj.user file (not tracked by git)
+       Example .user file content:
+       <?xml version="1.0" encoding="utf-8"?>
+       <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+         <PropertyGroup>
+           <AE_SDK_PATH>D:\path\to\ae_sdk\Examples</AE_SDK_PATH>
+         </PropertyGroup>
+       </Project>
+  -->
+  <PropertyGroup Label="UserMacros">
+    <CX_PLUGINS_ROOT>$(ProjectDir)..\..</CX_PLUGINS_ROOT>
+    <AE_PLUGIN_BUILD_DIR>$(CX_PLUGINS_ROOT)\output</AE_PLUGIN_BUILD_DIR>
+    <!-- Default SDK path for IntelliSense (will be overridden by .user file or environment variable) -->
+    <AE_SDK_PATH Condition="'$(AE_SDK_PATH)' == ''">C:\Users\cmp094\Documents\0_Develop\ae25.2_20.64bit.AfterEffectsSDK\Examples</AE_SDK_PATH>
+  </PropertyGroup>
+  <!-- Error if AE_SDK_PATH is not defined -->
+  <Target Name="CheckSDKPath" BeforeTargets="ClCompile">
+    <Error Condition="'$(AE_SDK_PATH)' == ''" Text="AE_SDK_PATH is not defined. Set it as an environment variable or in cx_PencilLine.vcxproj.user" />
+  </Target>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(AE_PLUGIN_BUILD_DIR)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(AE_PLUGIN_BUILD_DIR)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.aex</TargetExt>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cx_PencilLine</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cx_PencilLine</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.aex</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/cx_PencilLine.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(CX_PLUGINS_ROOT)\shared;$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine;$(AE_SDK_PATH)\Headers;$(AE_SDK_PATH)\Headers\SP;$(AE_SDK_PATH)\Headers\Win;$(AE_SDK_PATH)\Resources;$(AE_SDK_PATH)\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MSWindows;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>AE_Effect.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Bscmake>
+      <OutputFile>$(IntDir)$(TargetName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Release/cx_PencilLine.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(CX_PLUGINS_ROOT)\shared;$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine;$(AE_SDK_PATH)\Headers;$(AE_SDK_PATH)\Headers\SP;$(AE_SDK_PATH)\Headers\Win;$(AE_SDK_PATH)\Resources;$(AE_SDK_PATH)\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MSWindows;WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>AE_Effect.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>
+      </GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Bscmake>
+      <OutputFile>$(IntDir)$(TargetName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <!-- SDK Headers -->
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AEFX_SuiteHandlerTemplate.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_PluginData.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\Smart_Utils.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\String_Utils.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\A.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_Effect.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_EffectCB.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_EffectCBSuites.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_EffectSuites.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\AE_EffectSuitesHelper.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_EffectUI.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_GeneralPlug.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_IO.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\AE_Macros.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\AEGP_SuiteHandler.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\entry.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Util\Param_Utils.h" />
+    <ClInclude Include="$(AE_SDK_PATH)\Headers\PrSDKAESupport.h" />
+    <!-- Shared Headers -->
+    <ClInclude Include="$(CX_PLUGINS_ROOT)\shared\CXCommon.h" />
+    <!-- Plugin Headers -->
+    <ClInclude Include="$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine\PencilLine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- PiPL Resource -->
+    <CustomBuild Include="$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine\PencilLinePiPL.r">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling the PiPL</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compiling the PiPL</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl /I "$(AE_SDK_PATH)\Headers" /EP "$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine\%(Filename).r" > "$(IntDir)%(Filename).rr"
+"$(AE_SDK_PATH)\Resources\PiPLTool" "$(IntDir)%(Filename).rr" "$(IntDir)%(Filename).rrc"
+cl /D "MSWindows" /EP $(IntDir)%(Filename).rrc > "$(ProjectDir)%(Filename).rc"
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /I "$(AE_SDK_PATH)\Headers" /EP "$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine\%(Filename).r" > "$(IntDir)%(Filename).rr"
+"$(AE_SDK_PATH)\Resources\PiPLTool" "$(IntDir)%(Filename).rr" "$(IntDir)%(Filename).rrc"
+cl /D "MSWindows" /EP $(IntDir)%(Filename).rrc > "$(ProjectDir)%(Filename).rc"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).rc;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).rc;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PencilLinePiPL.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Source Files -->
+    <ClCompile Include="$(AE_SDK_PATH)\Util\Smart_Utils.cpp" />
+    <ClCompile Include="$(CX_PLUGINS_ROOT)\plugins\cx_PencilLine\PencilLine.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
